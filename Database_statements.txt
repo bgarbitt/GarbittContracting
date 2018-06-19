@@ -1,0 +1,25 @@
+CREATE TABLE `services` (
+  `id` int(11) NOT NULL,
+  `title` varchar(40) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `images` (
+  `id` int(11) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`,`url`),
+  CONSTRAINT `images_ibfk_1` FOREIGN KEY (`id`) REFERENCES `services` (`id`) 
+  ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `videos` (
+  `id` int(11) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`,`url`),
+  CONSTRAINT `videos_ibfk_1` FOREIGN KEY (`id`) REFERENCES `services` (`id`) 
+  ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+# Saving the database to an sql file
+mysqldump -u root -p garbitt_contracting_test > test.sql
