@@ -65,7 +65,7 @@ class Services extends Component {
     super (props);
     this.state = {
       servicesList: [
-        "Mulching", "Oilfiled Labour Crews", "Tree Trimming", "Tree Removal",
+        "service title 1", "Mulching", "Oilfiled Labour Crews", "Tree Trimming", "Tree Removal",
         "Tree Transplanting", "Chainlink Fencing", "Snow Plowing (Snowcat)",
         "Skid Steers", "Labour Crews", "Pipeline Clearing", "Fenceline Clearing",
         "General Excavating", "Commercial / Residential Land Clearing",
@@ -139,7 +139,8 @@ class ModalContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Loading...",
+      url: "http://127.0.0.1:5000/services/retrieve",
+      title: this.props.name,
       description: "Description Loading...",
       videoUrl: "about:blank",
       resources: "Resources Loading...",
@@ -147,6 +148,23 @@ class ModalContent extends Component {
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleModalClick = this.handleModalClick.bind(this);
+  }
+  componentDidMount() {
+    this.getServices(this.state.url, "service="+encodeURIComponent(this.state.title));
+  }
+  getServices(url, service) {
+    return fetch(url, {
+      body: service,
+      cache: 'no-cache',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST'
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      console.log(JSON.stringify(data));
+    }).catch(error => console.error(error));
   }
   handleClick(e) {
     e.preventDefault();
@@ -160,12 +178,13 @@ class ModalContent extends Component {
     return (
       <div className="service-modal" onClick={this.handleClick}>
         <div className="service-modal-content" onClick={this.handleModalClick}>
+          <p>test</p>
           <button 
             className="service-modal-close"
             onClick={this.handleClick}>
             &times;
           </button>
-          <h2>{this.state.title}</h2>
+          <h2>{this.props.name}</h2>
           <p>{this.state.description}</p>
           <h3>Video Example</h3>
           <iframe width="420" height="315" src={this.state.videoUrl}></iframe>
