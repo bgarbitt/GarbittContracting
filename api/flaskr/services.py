@@ -34,7 +34,9 @@ def retrieve():
                 else:
                     data[row[0]].append(row[1])
             resp = make_response(jsonify(data))
-            resp.headers['Access-Control-Allow-Origin'] = '*'
+            resp.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+            resp.headers['Access-Control-Allow-Methods'] = 'POST'
+            resp.headers['Access-Control-Allow-Headers'] = 'Content-Type'
             return resp
         else:
             return 'This request seemed to fail.'

@@ -139,7 +139,8 @@ class ModalContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: "http://127.0.0.1:5000/services/retrieve",
+      /*url: "http://127.0.0.1:5000/services/retrieve",*/
+      url: "http://63946136.ngrok.io",
       title: this.props.name,
       description: "Description Loading...",
       videoUrl: "about:blank",
