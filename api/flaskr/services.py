@@ -11,7 +11,7 @@ bp = Blueprint('services', __name__, url_prefix='/services')
 
 @bp.route('/retrieve', methods=('GET','POST'))
 def retrieve():
-    if request.method == 'GET':
+    if request.method == 'POST':
         service = request.form['service']
         #service = 'service title 1'
         db = get_db()
@@ -20,12 +20,12 @@ def retrieve():
         if not service:
             error = 'A service is required.'
         elif db.execute(
-            'SELECT url FROM images WHERE id = (SELECT id FROM services WHERE title = ?) UNION ALL SELECT url FROM videos WHERE id = (SELECT id FROM services WHERE title = ?)',
-            (service, service)
+            "SELECT 'explanation', explanation FROM services WHERE title = ? UNION ALL SELECT 'image', url FROM images WHERE id = (SELECT id FROM services WHERE title = ?) UNION ALL SELECT 'video', url FROM videos WHERE id = (SELECT id FROM services WHERE title = ?)",
+            (service, service, service)
         ).fetchone() is not None:
             cur = db.execute(
-                'SELECT "image", url FROM images WHERE id = (SELECT id FROM services WHERE title = ?) UNION ALL SELECT "video", url FROM videos WHERE id = (SELECT id FROM services WHERE title = ?)',
-                (service, service)
+                "SELECT 'explanation', explanation FROM services WHERE title = ? UNION ALL SELECT 'image', url FROM images WHERE id = (SELECT id FROM services WHERE title = ?) UNION ALL SELECT 'video', url FROM videos WHERE id = (SELECT id FROM services WHERE title = ?)",
+                (service, service, service)
             ).fetchall()
             data = {}
             for row in cur:
@@ -33,7 +33,9 @@ def retrieve():
                     data[row[0]] = [row[1]]
                 else:
                     data[row[0]].append(row[1])
-            return jsonify(data)
+            resp = make_response(jsonify(data))
+            resp.headers['Access-Control-Allow-Origin'] = '*'
+            return resp
         else:
             return 'This request seemed to fail.'
     return 'Wasn\'t a GET request for some reason.'
