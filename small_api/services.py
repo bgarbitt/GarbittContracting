@@ -1,26 +1,23 @@
-import functools
+from flask import (Flask, request, jsonify, make_response)
+import sqlite3
+from sqlite3 import Error
 
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, 
-    session, url_for, jsonify, make_response
-)
-from werkzeug.security import check_password_hash, generate_password_hash
+app = Flask(__name__)
 
-from flaskr.db import get_db
-
-bp = Blueprint('services', __name__, url_prefix='/services')
-
-@bp.route('/retrieve', methods=('GET','POST'))
+@app.route('/services/retrieve', methods=('GET','POST'))
 def retrieve():
     if request.method == 'POST':
-        #print(request.form)
+        try:
+            db = sqlite3.connect('services.sqlite')
+        except Error as e:
+            print(e)
+        
         #service = request.form['service']
         service = 'service title 1'
-        db = get_db()
         error = None
 
         if not service:
-            error = 'A service is required.'
+            error = 'A service is required in the request body.'
         elif db.execute(
             "SELECT 'explanation', explanation FROM services WHERE title = ? UNION ALL SELECT 'image', url FROM images WHERE id = (SELECT id FROM services WHERE title = ?) UNION ALL SELECT 'video', url FROM videos WHERE id = (SELECT id FROM services WHERE title = ?)",
             (service, service, service)
@@ -37,10 +34,11 @@ def retrieve():
                     data[row[0]].append(row[1])
             resp = make_response(jsonify(data))
             resp.headers['Access-Control-Allow-Origin'] = '*'
-            #resp.headers['Access-Control-Allow-Methods'] = 'POST'
-            #resp.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+            #resp.headers.set('Access-Control-Allow-Methods', 'GET')
+            #resp.headers.set('Access-Control-Allow-Headers', 'Content-Type')
             return resp
             #return jsonify(data)
         else:
             return 'This request seemed to fail.'
-    return 'Wasn\'t a GET request for some reason.'
+    return 'Wasn\'t a post request, so the server will reject this.'
+        
