@@ -134,6 +134,8 @@ class Modal extends Component {
 This is where a database will be needed. In order to have individual
 modals pop up without manually creating an unknown amount, a database
 will be needed.
+Note: the iframe for the video needs a youtube url of the form:
+      https://www.youtube.com/embed/v6H2HmKDbZA
 */
 class ModalContent extends Component {
   constructor(props) {
@@ -142,7 +144,7 @@ class ModalContent extends Component {
       url: "http://127.0.0.1:5000/services/retrieve",
       title: this.props.name,
       description: "Description Loading...",
-      videoUrl: "about:blank",
+      videoUrls: ["about:blank"],
       resources: "Resources Loading...",
       imageUrls: [""]
     }
@@ -163,6 +165,13 @@ class ModalContent extends Component {
     }).then(response => {
       return response.json();
     }).then(data => {
+      this.setState({
+        /*{"explanation":["s"],"image":["i","i"],"video":["v","v"]}*/
+        description: data.explanation,
+        videoUrls: data.video,
+        /*imageUrls: data.image*/
+        imageUrls: ["https://i.redd.it/5i25q234ce711.jpg", "https://i.imgur.com/Rf6kd2z.jpg"]
+      })
       console.log(JSON.stringify(data));
     }).catch(error => console.error(error));
   }
@@ -173,6 +182,7 @@ class ModalContent extends Component {
   handleModalClick(e) {
     e.preventDefault();
     return false;
+    /*{this.state.videoUrls[0]} */
   }
   render () {
     return (
@@ -185,9 +195,9 @@ class ModalContent extends Component {
             &times;
           </button>
           <h2>{this.props.name}</h2>
-          <p>{this.state.description}</p>
+          <p>{this.state.description[0]}</p>
           <h3>Video Example</h3>
-          <iframe width="420" height="315" src={this.state.videoUrl}></iframe>
+          <iframe width="420" height="315" src={this.state.videoUrls[0]}></iframe>
           <h3>Gallery</h3>
           <ModalImages urls={this.state.imageUrls} {...this.state}/>
           
@@ -215,7 +225,7 @@ class ModalImages extends Component {
       <section className="horizontal-list-container">
         <ul className="service-modal-images">
           {this.props.urls.map((url) => {
-            return <img src={url} alt={this.state.imageTitle}/>
+            return <img src={url} alt={this.state.imageTitle} width="100px"/>
           })}
         </ul>
       </section>
