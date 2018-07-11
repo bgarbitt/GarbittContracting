@@ -11,8 +11,8 @@ class Navigation extends Component {
         </h1>
         <img src={logo} className="logo" alt="logo" />
         <nav className="navigation-normal">
-          <a href="#services">Services</a><p>|</p>
           <a href="#about">About Us</a><p>|</p>
+          <a href="#services">Services</a><p>|</p>
           <a href="#safety">Safety</a><p>|</p>
           <a href="#fleet">Fleet</a><p>|</p>
           <a href="#contact">Contact Us</a><p>|</p>
@@ -21,8 +21,8 @@ class Navigation extends Component {
         <div className="navigation-dropdown">
           <button className="navigation-dropdown-button">Jump To</button>
           <div className="navigation-dropdown-content">
-            <a href="#services">Services</a>
             <a href="#about">About Us</a>
+            <a href="#services">Services</a>
             <a href="#safety">Safety</a>
             <a href="#fleet">Fleet</a>
             <a href="#contact">Contact Us</a>
@@ -36,7 +36,7 @@ class Navigation extends Component {
 class About extends Component {
   render () {
     return (
-      <section className="about">
+      <section className="about" id="about">
         <div className="about-parallax">
           <div className="parallax-opacity">
             <p className="parallax-pretty">ABOUT GARBITT CONTRACTING</p>
@@ -94,14 +94,14 @@ class ServicesList extends Component {
       <section className="horizonatal-list-container">
         <ul className="services-list">
           {this.props.servicesList.map((service, index) => {
-            return <Modal name={service} index={index}/>
+            return <ModalButton name={service} index={index}/>
           })}
         </ul>
       </section>
     );
   }
 }
-class Modal extends Component {
+class ModalButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -125,7 +125,7 @@ class Modal extends Component {
           onClick={this.handleClick}>
           {this.props.name}
         </button>
-        {this.state.showModal ? <ModalContent name={this.props.name} onSpanClick={this.handleClick}/> : null }
+        {this.state.showModal ? <Modal name={this.props.name} onSpanClick={this.handleClick}/> : null }
       </li>
     );
   }
@@ -137,7 +137,7 @@ will be needed.
 Note: the iframe for the video needs a youtube url of the form:
       https://www.youtube.com/embed/v6H2HmKDbZA
 */
-class ModalContent extends Component {
+class Modal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -149,9 +149,10 @@ class ModalContent extends Component {
       imageUrls: [""]
     }
     this.handleClick = this.handleClick.bind(this);
-    this.handleModalClick = this.handleModalClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
   componentDidMount() {
+    document.addEventListener('click', this.handleOutsideClick, false);
     this.getServices(this.state.url, "service="+encodeURIComponent(this.state.title));
   }
   getServices(url, service) {
@@ -169,25 +170,30 @@ class ModalContent extends Component {
         /*{"explanation":["s"],"image":["i","i"],"video":["v","v"]}*/
         description: data.explanation,
         videoUrls: data.video,
-        /*imageUrls: data.image*/
-        imageUrls: ["https://i.redd.it/5i25q234ce711.jpg", "https://i.imgur.com/Rf6kd2z.jpg"]
+        imageUrls: data.image
+        /*imageUrls: ["https://i.redd.it/5i25q234ce711.jpg", "https://i.imgur.com/Rf6kd2z.jpg"]*/
       })
       console.log(JSON.stringify(data));
     }).catch(error => console.error(error));
   }
-  handleClick(e) {
-    e.preventDefault();
+  handleClick() {
+    document.removeEventListener('click', this.handleOutsideClick, false);
     this.props.onSpanClick();
   }
-  handleModalClick(e) {
-    e.preventDefault();
-    return false;
-    /*{this.state.videoUrls[0]} */
+  handleOutsideClick(e) {
+    if (this.node.contains(e.target)) {
+      console.log('not outside');
+      return;
+    }
+    this.handleClick();
   }
   render () {
     return (
-      <div className="service-modal" onClick={this.handleClick}>
-        <div className="service-modal-content" onClick={this.handleModalClick}>
+      //<div className="service-modal-backdrop" onClick={this.handleClick}>
+      //<div className="service-modal-backdrop" onClick={this.handleClick} ref={node => {this.node = node; }}>
+      //<div className="service-modal-content" onClick={this.handleModalClick}>
+      <div className="service-modal-backdrop" >
+        <div className="service-modal-content" ref={node => {this.node = node; }}>
           <p>test</p>
           <button 
             className="service-modal-close"
@@ -197,7 +203,7 @@ class ModalContent extends Component {
           <h2>{this.props.name}</h2>
           <p>{this.state.description[0]}</p>
           <h3>Video Example</h3>
-          <iframe width="420" height="315" src={this.state.videoUrls[0]}></iframe>
+          <iframe width="420" height="315" src="https://www.youtube.com/embed/PoKFSIWZkyo" allowfullscreen></iframe>
           <h3>Gallery</h3>
           <ModalImages urls={this.state.imageUrls} {...this.state}/>
           
@@ -224,11 +230,41 @@ class ModalImages extends Component {
     return(
       <section className="horizontal-list-container">
         <ul className="service-modal-images">
-          {this.props.urls.map((url) => {
-            return <img src={url} alt={this.state.imageTitle} width="100px"/>
-          })}
+            {this.props.urls.map((url) => {
+              return <li className="service-modal-images-crop"><img src={url} alt={this.state.imageTitle}/></li>
+            })}
         </ul>
       </section>
+    );
+  }
+}
+class Safety extends Component {
+  constructor (props) {
+    super (props);
+  }
+  render() {
+    return (
+      <section className="safety" id="safety">
+        <div className="safety-parallax">
+          <div className="parallax-opacity">
+            <p className="parallax-pretty">SAFETY</p>
+          </div>
+        </div>
+        <p className="safety-statement">
+          Temporary safety message. Be sure to mention about comply works and
+          the other stuff.
+        </p>
+      </section>
+    );
+  }
+}
+class Fleet extends Component {
+  constructor (props) {
+    super(props);
+  }
+  render() {
+    return (
+      <p>Fleet</p>
     );
   }
 }
@@ -246,6 +282,8 @@ class Homepage extends Component {
         <Navigation />
         <About />
         <Services />
+        <Safety />
+        <Fleet />
       </form>
     );
   }

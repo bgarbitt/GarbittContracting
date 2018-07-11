@@ -1,0 +1,9 @@
+INSERT INTO services (id, title, explanation) VALUES 
+(1, 'Mulching', 'Mulching is a land clearing method that uses a single machine to cut, grind, and clear vegetation. The machine uses a rotary drum equipped with steel chipper tools to shred vegetation.'),
+(2, '', '')
+
+INSERT INTO images (id, url) VALUES 
+(1, 'https://imgur.com/ZcG4njK'),
+
+INSERT INTO videos (id, url) VALUES 
+(1, 'https://www.youtube.com/embed/PoKFSIWZkyo'),

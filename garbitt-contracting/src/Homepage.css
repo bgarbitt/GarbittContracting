@@ -37,7 +37,7 @@ functions. Code structure is as follows:
   padding-top: 5px;
   background-color: gray;
   z-index: 1;
-  display: none;
+  /*display: none;*/
 }
 .navigation h1 {
   font-size: 60px;
@@ -206,13 +206,14 @@ button:hover[name="services-button"] {
   background-color: #777;
   color: white;
 }
-.service-modal {
+.service-modal-backdrop {
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  text-align: center;
   
   overflow: hidden;
   background-color: rgb(0,0,0);
@@ -227,6 +228,7 @@ button:hover[name="services-button"] {
 .service-modal-content {
   background-color: #777;
   margin: 5% auto;
+  position: absolute;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -249,19 +251,24 @@ button:hover[name="services-button"] {
   text-decoration: none;
   cursor: pointer;
 }
-.service-modal-images ul {
+.service-modal-images {
   margin: 0;
   padding: 0;
   overflow: hidden;
   text-align: center;
   background-color: #777;
 }
-.service-modal-images li {
-  background-color: white;
-  list-style-type: none;
-  display: inline-block;
-  font: 400 25px/1.8 "Lato", sans-serif;
-  min-width: 500px;
+li.service-modal-images-crop {
+  background-color: #777;
+  min-width: 0;
+  width: 300px;
+  height: 169px;
+  margin: 10px;
+}
+.service-modal-images-crop img {
+  height: 169px;
+  width: 300px;
+  object-fit: contain;
 }
 .services-list li a {
   display: inline-block;
@@ -272,6 +279,32 @@ button:hover[name="services-button"] {
 }
 .services-list li a:hover {
   background-color: violet;
+}
+/* Safety */
+.safety-parallax {
+  
+  
+  /* Image to be used */
+  background-image: url("hexBack.jpg");
+
+  /* Set specific height */
+  min-height: 300px;
+
+  /* Meat and bones of parallax */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.safety-statement {
+  margin: auto;
+  font: 400 25px/1.8 "Lato", sans-serif;
+  padding-left: 130px;
+  padding-right: 130px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #777;
+  background-color: white;
 }
 
 @media all and (max-width: 1420px) {

@@ -14,8 +14,8 @@ bp = Blueprint('services', __name__, url_prefix='/services')
 def retrieve():
     if request.method == 'POST':
         #print(request.form)
-        #service = request.form['service']
-        service = 'service title 1'
+        service = request.form['service']
+        #service = 'service title 1'
         db = get_db()
         error = None
 
