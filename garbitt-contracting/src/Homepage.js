@@ -7,7 +7,7 @@ class Navigation extends Component {
     return (
       <header className="navigation">
         <h1>
-          Garbitt Contracting
+          Garbitt Contracting Ltd.
         </h1>
         <img src={logo} className="logo" alt="logo" />
         <nav className="navigation-normal">
@@ -15,8 +15,7 @@ class Navigation extends Component {
           <a href="#services">Services</a><p>|</p>
           <a href="#safety">Safety</a><p>|</p>
           <a href="#fleet">Fleet</a><p>|</p>
-          <a href="#contact">Contact Us</a><p>|</p>
-          <a href="#quote">Request a Quote</a>
+          <a href="#contact">Contact Us</a>
         </nav>
         <div className="navigation-dropdown">
           <button className="navigation-dropdown-button">Jump To</button>
@@ -60,6 +59,7 @@ class About extends Component {
     );
   }
 }
+//#region Services
 class Services extends Component {
   constructor (props) {
     super (props);
@@ -94,7 +94,7 @@ class ServicesList extends Component {
       <section className="horizonatal-list-container">
         <ul className="services-list">
           {this.props.servicesList.map((service, index) => {
-            return <ModalButton name={service} index={index}/>
+            return <ModalButton name={service} key={index}/>
           })}
         </ul>
       </section>
@@ -119,7 +119,7 @@ class ModalButton extends Component {
   }
   render() {
     return (
-      <li key={this.props.index}>
+      <li>
         <button 
           name="services-button"
           onClick={this.handleClick}>
@@ -148,8 +148,8 @@ class Modal extends Component {
       resources: "Resources Loading...",
       imageUrls: [""]
     }
-    this.handleClick = this.handleClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
     document.addEventListener('click', this.handleOutsideClick, false);
@@ -167,43 +167,44 @@ class Modal extends Component {
       return response.json();
     }).then(data => {
       this.setState({
-        /*{"explanation":["s"],"image":["i","i"],"video":["v","v"]}*/
+        //data = {"explanation":["s"],"image":["i","i"],"video":["v","v"]}
         description: data.explanation,
         videoUrls: data.video,
         imageUrls: data.image
-        /*imageUrls: ["https://i.redd.it/5i25q234ce711.jpg", "https://i.imgur.com/Rf6kd2z.jpg"]*/
       })
-      console.log(JSON.stringify(data));
     }).catch(error => console.error(error));
   }
-  handleClick() {
+  
+  handleOutsideClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
     document.removeEventListener('click', this.handleOutsideClick, false);
     this.props.onSpanClick();
   }
-  handleOutsideClick(e) {
-    if (this.node.contains(e.target)) {
-      console.log('not outside');
-      return;
-    }
-    this.handleClick();
+  handleClick(e) {
+    document.removeEventListener('click', this.handleOutsideClick, false);
+    this.props.onSpanClick();
   }
   render () {
     return (
-      //<div className="service-modal-backdrop" onClick={this.handleClick}>
-      //<div className="service-modal-backdrop" onClick={this.handleClick} ref={node => {this.node = node; }}>
-      //<div className="service-modal-content" onClick={this.handleModalClick}>
       <div className="service-modal-backdrop" >
-        <div className="service-modal-content" ref={node => {this.node = node; }}>
-          <p>test</p>
+        <div className="service-modal-content" ref={node => {this.node = node;}}>
           <button 
             className="service-modal-close"
+            type="button"
             onClick={this.handleClick}>
             &times;
           </button>
           <h2>{this.props.name}</h2>
           <p>{this.state.description[0]}</p>
           <h3>Video Example</h3>
-          <iframe width="420" height="315" src="https://www.youtube.com/embed/PoKFSIWZkyo" allowfullscreen></iframe>
+          <iframe 
+            width="420" 
+            height="315" 
+            src="https://www.youtube.com/embed/PoKFSIWZkyo" 
+            title={this.props.name + "Video"} allowFullScreen>
+            </iframe>
           <h3>Gallery</h3>
           <ModalImages urls={this.state.imageUrls} {...this.state}/>
           
@@ -230,18 +231,21 @@ class ModalImages extends Component {
     return(
       <section className="horizontal-list-container">
         <ul className="service-modal-images">
-            {this.props.urls.map((url) => {
-              return <li className="service-modal-images-crop"><img src={url} alt={this.state.imageTitle}/></li>
+            {this.props.urls.map((url, index) => {
+              return (
+                <li className="service-modal-images-crop" key={index}>
+                  <img src={url} alt={this.state.imageTitle + index}/>
+                </li>
+              );
             })}
         </ul>
       </section>
     );
   }
 }
+//#endregion Services
+//#region Safety
 class Safety extends Component {
-  constructor (props) {
-    super (props);
-  }
   render() {
     return (
       <section className="safety" id="safety">
@@ -258,33 +262,336 @@ class Safety extends Component {
     );
   }
 }
+//#endregion Safety
+//#region Fleet
 class Fleet extends Component {
+  constructor (props) {
+    super (props);
+    this.state = {
+      url: "http://127.0.0.1:5000/",
+      fleet: {}
+    }
+  }
+  componentDidMount () {
+    this.getFleet(this.state.url);
+  }
+  getFleet(url) {
+    return fetch(url, {
+      cache: 'no-cache',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET'
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      this.setState({
+        //{"machine 1":["url", "url",...], "machine 2":...}
+        fleet: data
+      })
+    }).catch(error => console.error(error));
+  }
+  render () {
+    return (
+      <section className="fleet">
+        <div className="fleet-parallax">
+          <div className="parallax-opacity">
+            <p className="parallax-pretty">FLEET</p>
+          </div>
+        </div>
+        <FleetImages fleetList={this.state.fleet}/>
+      </section>
+    );
+  }
+}
+class FleetImages extends Component {
+  render () {
+    return (
+      <section className="horizonatal-list-container">
+        <ul className="fleet-list">
+          {Object.keys(this.props.fleetList).map((key, index) => 
+            <FleetModalImageButton 
+              name={key} 
+              key={index} 
+              urls={this.props.fleetList[key]}
+              />
+          )}
+        </ul>
+      </section>
+    );
+  }
+}
+class FleetModalImageButton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false
+    };
+    this.backgroundImg = {
+      backgroundImage: "url(" + this.props.urls[0] + ")"
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick (e) {
+    if (this.state.showModal === false) {
+      e.preventDefault();
+      this.setState({showModal:true});
+    } else {
+      this.setState({showModal:false});
+    }
+  }
+  render() {
+    return (
+      <li className="fleet-button-image-crop">
+        <p className="fleet-button-title">{this.props.name}</p>
+        <button 
+          name="fleet-button"
+          onClick={this.handleClick}
+          style={this.backgroundImg ? this.backgroundImg : ""}>
+        </button>
+        {this.state.showModal ? <FleetModal name={this.props.name} urls={this.props.urls} onSpanClick={this.handleClick}/> : null }
+      </li>
+    );
+  }
+}
+class FleetModal extends Component {
+  constructor(props) {
+    super(props);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.clicked = this.clicked.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener('click', this.handleOutsideClick, false);
+  }
+  
+  handleOutsideClick(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    document.removeEventListener('click', this.handleOutsideClick, false);
+    this.props.onSpanClick();
+  }
+  handleClick(e) {
+    document.removeEventListener('click', this.handleOutsideClick, false);
+    this.props.onSpanClick();
+  }
+  clicked(e) {
+    console.log("Click!");
+    return
+  }
+  render () {
+    return (
+      <div className="fleet-modal-backdrop" >
+        <div className="fleet-modal-content" ref={node => {this.node = node;}}>
+          <button 
+            className="fleet-modal-close"
+            onClick={this.handleClick}>
+            &times;
+          </button>
+          {/*this.props.urls.map((imgsrc, index) => 
+            <a className="slide-buttons" href={"#" + this.props.name + index}>{index+1}</a>
+          )*/}
+          <div className="slider">
+            {this.props.urls.map((imgsrc, index) => 
+              <a className="slide-buttons" href={"#" + this.props.name + index} onClick={this.clicked}>{index+1}</a>
+            )}
+            <div className="slides">
+              {this.props.urls.map((imgsrc, index) => {
+                return (
+                  <div className="slide" id={this.props.name + index} 
+                  key={this.props.name + index}>
+                    <a className="slide-link" href={imgsrc} target="_blank">
+                      <img src={imgsrc} alt={this.props.name + index}/></a></div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+//#endregion Fleet
+class Contact extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: "http://127.0.0.1:5000/contact",
+      name: '',
+      organization: '',
+      email: '',
+      phone: '',
+      message: '',
+      checked: false,
+      warn: false,
+      pressed: false,
+      sent: false,
+      confirmed: false,
+      notified: false
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.warningButton = this.warningButton.bind(this);
+    this.okButton = this.okButton.bind(this);
+    this.sendEmail = this.sendEmail.bind(this);
+  }
+  handleChange(e) {
+    const name = e.target.name;
+    this.setState({[name]: e.target.value});
+  }
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.phone === '' && this.state.email === '') {
+      if (this.state.checked === false) {
+        this.setState({warn: true});
+        return;
+      }
+    }
+    this.setState({ sent: true, pressed: true });
+    this.sendEmail();
+    window.setTimeout(() => {
+      this.setState({
+        sent: false, pressed: false
+      });
+    }, 5000);
+  }
+  sendEmail() {
+    var data = 
+      "name="+encodeURIComponent(this.state.name)+"&"+
+      "organization="+encodeURIComponent(this.state.organization)+"&"+
+      "email="+encodeURIComponent(this.state.email)+"&"+
+      "phone="+encodeURIComponent(this.state.phone)+"&"+
+      "message="+encodeURIComponent(this.state.message);
+    console.log(this.state.name);
+    return fetch(this.state.url, {
+      body: data,
+      cache: 'no-cache',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST'
+    }).then(response => {
+      return response.json();
+    }).then(data => {
+      this.setState({
+        //data = {"confirmed":[true/false]}
+        confirmed: data.confirmed
+      })
+    }).catch(error => console.error(error));
+  }
+  warningButton(e) {
+    e.preventDefault();
+    this.setState({
+      warn: false,
+      checked: true
+    });
+  }
+  okButton(e) {
+    e.preventDefault();
+    this.setState({
+      confirmed: false,
+      notified: true
+    });
+  }
+  render() {
+    return (
+      <section className="contact">
+        <div className="contact-parallax">
+          <div className="parallax-opacity">
+            <div className="parallax-contact-area">
+              <h1 className="contact-title">CONTACT</h1>
+              <div className="contact-information-area">
+                <form className="contact-message-form" onSubmit={this.handleSubmit}>
+                  <label>
+                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Name"/><br/>
+                    <input type="text" name="organization"  value={this.state.organization} onChange={this.handleChange} placeholder="Organization (optional)"/><br/>
+                    <input type="text" name="email"  value={this.state.email} onChange={this.handleChange} placeholder="Email (optional)"/><br/>
+                    <input type="text" name="phone"  value={this.state.phone} onChange={this.handleChange} placeholder="Phone (optional)"/><br/>
+                    <input type="text" name="message"  value={this.state.message} onChange={this.handleChange} placeholder="Message..."/>
+                  </label>
+                  <input type="submit" value="Submit" disabled={this.state.pressed}/>
+                  {this.state.warn ? <Warning warningButton = {this.warningButton}/> : ''}
+                  {this.state.sent ? <SentPopup/> : ''}
+                  {this.state.confirmed ? <EmailConfirmation okButton = {this.okButton}/> : ''}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+}
+class Warning extends Component {
   constructor (props) {
     super(props);
   }
   render() {
+    return(
+      <div className="contact-backdrop">
+        <div className="contact-box">
+          <h3>one time heads up</h3>
+          <p>
+            Both the email and the phone fields were left blank. If there is not
+            enough information in the message we may not be able to get back to
+            you. This pop up won't appear again.
+          </p>
+          <button name="warning-button" onClick={this.props.warningButton}>ok</button>
+        </div>
+      </div>
+    );
+  }
+}
+class EmailConfirmation extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+      <div className="contact-backdrop">
+        <div className="contact-box">
+          <h3>Email has been sent!</h3>
+          <button name="ok-button" onClick={this.props.okButton}>ok</button>
+        </div>
+      </div>
+    );
+  }
+}
+class SentPopup extends Component {
+  render() {
     return (
-      <p>Fleet</p>
+      <div className="sent-box">
+        <p>
+          You're message has been sent! A confirmation popup will appear if
+          the email has been successfully sent.
+        </p>
+      </div>
+    );
+  }
+}
+class Footer extends Component {
+  render() {
+    return (
+      <footer></footer>
     );
   }
 }
 class Homepage extends Component {
   constructor (props) {
     super (props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit () {
-    return false;
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
         <Navigation />
         <About />
         <Services />
         <Safety />
         <Fleet />
-      </form>
+        <Contact />
+        <Footer />
+      </div>
     );
   }
 }

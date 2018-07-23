@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_mail import Mail
 
 def create_app(test_config=None):
     # Create and configure the app
@@ -8,6 +9,22 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY = 'dev',
         DATABASE = os.path.join(app.instance_path, 'services.sqlite'),
+    )
+    #GMAIL settings
+    '''
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USERNAME='bgarbitt@ualberta.ca',
+    MAIL_PASSWORD='Bretzky2499'
+    '''
+    #TELUS settings
+    app.config.update(
+        MAIL_SERVER='smtp.telus.net',
+        MAIL_PORT=465,
+        MAIL_USE_SSL=True,
+        MAIL_USERNAME='garbitt@telus.net',
+        MAIL_PASSWORD='Garbh1943'
     )
 
     if test_config is None:
@@ -35,5 +52,14 @@ def create_app(test_config=None):
     # registering the blueprint for services
     from . import services
     app.register_blueprint(services.bp)
+
+    # registering the blueprint for fleet
+    from . import fleet
+    app.register_blueprint(fleet.bp)
+    app.add_url_rule('/', endpoint='fleet')
+
+    # where the email will be constructed and sent.
+    from . import contact
+    app.register_blueprint(contact.bp)
 
     return app

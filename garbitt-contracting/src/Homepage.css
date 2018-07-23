@@ -24,7 +24,7 @@ functions. Code structure is as follows:
  *                                  Normal CSS
  * ----------------------------------------------------------------------------
 */
-
+/* #region Navigation css */
 /*
  * Navigation Bar
  * - normal is when the navigation links can fit horizontally.
@@ -53,7 +53,7 @@ functions. Code structure is as follows:
 .navigation nav {
   float: right;
   font-size: 20px;
-  width: 600px;
+  width: 440px;
   height: 24px;
   margin-top: 56px;
   margin-right: 20px;
@@ -75,7 +75,8 @@ functions. Code structure is as follows:
 .navigation-dropdown {
   display: none;
 }
-/* About */
+/* #endregion Navigation */
+/* #region About and parallax css */
 .about {
   /* In order to not be covered by the navigation bar */
   padding-top: 90px;
@@ -125,7 +126,8 @@ functions. Code structure is as follows:
   text-shadow: 1px 1px 1px 1px black;
   border-radius: 4px;
 }
-/* Services */
+/* #endregion About and parallax css */
+/* #region Services css */
 .services-parallax {
   
   
@@ -228,7 +230,6 @@ button:hover[name="services-button"] {
 .service-modal-content {
   background-color: #777;
   margin: 5% auto;
-  position: absolute;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -239,7 +240,7 @@ button:hover[name="services-button"] {
 }
 .service-modal-close {
   position: absolute;
-  right: 200px;
+  right: 10%;
   top: 120px;
   color: #aaa;
   font-size: 28px;
@@ -280,7 +281,8 @@ li.service-modal-images-crop {
 .services-list li a:hover {
   background-color: violet;
 }
-/* Safety */
+/* #endregion Services css */
+/* #region Safety css */
 .safety-parallax {
   
   
@@ -306,7 +308,283 @@ li.service-modal-images-crop {
   color: #777;
   background-color: white;
 }
+/* #endregion Safety css */
+/* #region FLEET css */
+.fleet-parallax {
+  /* Image to be used */
+  background-image: url("hexBack.jpg");
 
+  /* Set specific height */
+  min-height: 300px;
+
+  /* Meat and bones of parallax */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.fleet-pretty {
+  font: 400 40px/1.8 "Lato", sans-serif;
+  padding: 30px;
+  margin: auto;
+  text-align: center;
+  letter-spacing: 8px;
+  background-color: rgba(0,0,0,0.9);
+  color: #fff;
+  width: 50%;
+  text-shadow: 1px 1px 1px 1px black;
+}
+.fleet-list ul {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: #777;
+}
+.fleet-list > li {
+  background-color: white;
+  list-style-type: none;
+  display: inline-block;
+  font: 400 25px/1.8 "Lato", sans-serif;
+  min-width: 500px;
+}
+.fleet-list > li > a {
+  display: inline-block;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+  color: #777;
+}
+button[name="fleet-button"] {
+  background-color: white;
+  border: none;
+  color: #777;
+  text-decoration: none;
+  font: 400 25px/1.8 "Lato", sans-serif;
+  margin: 0;
+  padding: 8px;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  background-size: cover;
+}
+button:hover[name="fleet-button"] {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+}
+li.fleet-button-image-crop {
+  min-width: 0;
+  width: 210px;
+  height: 260px;
+  margin: 10px;
+  background-color: #777;
+  border-radius: 10px;
+}
+p.fleet-button-title {
+  margin: 0;
+  padding-bottom: 5px;
+}
+img.fleet-button-image {
+  height: 200px;
+  width: 200px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.fleet-modal-backdrop {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  
+  overflow: hidden;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+.fleet-modal-content {
+  background-color: #777;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height: 80%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+}
+.fleet-modal-close {
+  position: absolute;
+  right: 10%;
+  top: 120px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+.fleet-modal-close:hover,
+.fleet-modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*  slider code from: 
+    https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/
+*/
+.slider {
+  margin: auto;
+  width: 90%;
+  height: 100%;
+  overflow-x: hidden;
+}
+.slides {
+  display: flex;
+  overflow-x: auto;
+  border-radius: 5px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-points-x: repeat(300px);
+  scroll-snap-type: mandatory;
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 10px;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slider > a {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: white;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 0.5rem 0.5rem 0;
+  position: relative;
+}
+.slider > a:active {
+  top: 1px;
+}
+.slider > a:focus {
+  background: #000;
+}
+.slide-link > img {
+  margin: 0;
+  padding: 0;
+  max-height: calc(100vh - 30vh);
+  /*overflow: hidden;*/
+  text-align: center;
+  background-color: #777;
+}
+.fleet-modal-images {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: #777;
+}
+
+/* #endregion FLEET css */
+/* #region Contact css */
+.contact-parallax {
+  /* Image to be used */
+  background-image: url("hexBack.jpg");
+  overflow: auto;
+
+  /* Set specific height */
+  min-height: 300px;
+
+  /* Meat and bones of parallax */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax-contact-area {
+  padding: 30px;
+  margin: auto;
+  margin-top: 84px;
+  background-color: rgba(0,0,0,0.7);
+  width: 80%;
+  border-radius: 4px;
+}
+.contact-title {
+  font: 400 40px/1.8 "Lato", sans-serif;
+  letter-spacing: 8px;
+  text-shadow: 1px 1px 1px 1px black;
+  color: #fff;
+  text-align: center;
+}
+.contact-information-area {
+  border: #fff;
+  border-style: solid;
+  border-radius: 4px;
+}
+.contact-backdrop {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  
+  overflow: hidden;
+}
+.contact-box {
+  position: fixed;
+  width: 30%;
+  height: 168px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #777;
+  border-radius: 8px;
+}
+.sent-box {
+  position: fixed;
+  width: 26%;
+  height: 8%;
+  top: 92%;
+  left: 74%;
+  background-color: #777;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.sent-box > p {
+  font-size: 2.3vh;
+  margin: 0;
+  padding-left: 4px;
+  padding-top: 4px;
+}
+button[name="warning-button"] {
+
+}
+/* #endregion Contact css */
+/* #region Media css (phone friendly stuff) */
 @media all and (max-width: 1420px) {
   /* Navigation Bar */
   .navigation {
@@ -315,7 +593,7 @@ li.service-modal-images-crop {
   }
   .navigation h1 {
     font-size: 38px;
-    width: 210px;
+    width: 300px;
     margin-top: 0px;
     color:black;
   }
@@ -326,7 +604,7 @@ li.service-modal-images-crop {
 
 /* Services */
 
-@media all and (max-width: 1100px) {
+@media all and (max-width: 1000px) {
   .navigation-normal {
     display: none;
   }
@@ -366,7 +644,7 @@ li.service-modal-images-crop {
     background-color: yellow;
   }
 }
-
+/* #endregion Media css (phone friendly stuff) */
 /* Small things */
 
 /* Scrollbar taken from: https://gist.github.com/devinrhode2/2573411 */
