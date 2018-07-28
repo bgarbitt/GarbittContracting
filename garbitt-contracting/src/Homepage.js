@@ -3,6 +3,25 @@ import logo from './gcl-logo.png';
 import './Homepage.css';
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(e) {
+    e.preventDefault();
+    if (this.state.clicked === true) {
+      this.setState({
+        clicked: false
+      });
+    } else {
+      this.setState({
+        clicked: true
+      });
+    }
+  }
   render () {
     return (
       <header className="navigation">
@@ -18,15 +37,18 @@ class Navigation extends Component {
           <a href="#contact">Contact Us</a>
         </nav>
         <div className="navigation-dropdown">
-          <button className="navigation-dropdown-button">Jump To</button>
-          <div className="navigation-dropdown-content">
-            <a href="#about">About Us</a>
-            <a href="#services">Services</a>
-            <a href="#safety">Safety</a>
-            <a href="#fleet">Fleet</a>
-            <a href="#contact">Contact Us</a>
-            <a href="#quote">Request a Quote</a>
-          </div>
+          <button className="navigation-dropdown-button" onClick={this.handleClick}>Nav</button>
+          {this.state.clicked ?
+            <div className="navigation-dropdown-content">
+              <a href="#about">About Us</a>
+              <a href="#services">Services</a>
+              <a href="#safety">Safety</a>
+              <a href="#fleet">Fleet</a>
+              <a href="#contact">Contact Us</a>
+              <a href="#quote">Request a Quote</a>
+            </div>
+            : '' 
+          }
         </div>
       </header>
     )
@@ -79,11 +101,12 @@ class Services extends Component {
       <section className="services">
         <div className="services-parallax">
           <div className="parallax-opacity">
-            <p className="parallax-pretty">SERVICES</p>
+            <p className="services-pretty">SERVICES</p>
           </div>
         </div>
         <p className="services-statement">At Garbitt Contracting, we offer services in: (click for more info)<br/></p>
         <ServicesList servicesList={this.state.servicesList}/>
+        <br/>
       </section>
     );
   }
@@ -234,7 +257,7 @@ class ModalImages extends Component {
             {this.props.urls.map((url, index) => {
               return (
                 <li className="service-modal-images-crop" key={index}>
-                  <img src={url} alt={this.state.imageTitle + index}/>
+                  <a href={url} target="_blank"><img src={url} alt={this.state.imageTitle + index}/></a>
                 </li>
               );
             })}
@@ -251,7 +274,7 @@ class Safety extends Component {
       <section className="safety" id="safety">
         <div className="safety-parallax">
           <div className="parallax-opacity">
-            <p className="parallax-pretty">SAFETY</p>
+            <p className="safety-pretty">SAFETY</p>
           </div>
         </div>
         <p className="safety-statement">
@@ -296,7 +319,7 @@ class Fleet extends Component {
       <section className="fleet">
         <div className="fleet-parallax">
           <div className="parallax-opacity">
-            <p className="parallax-pretty">FLEET</p>
+            <p className="fleet-pretty">FLEET</p>
           </div>
         </div>
         <FleetImages fleetList={this.state.fleet}/>
@@ -342,7 +365,7 @@ class FleetModalImageButton extends Component {
   }
   render() {
     return (
-      <li className="fleet-button-image-crop">
+      <li>
         <p className="fleet-button-title">{this.props.name}</p>
         <button 
           name="fleet-button"
@@ -384,29 +407,26 @@ class FleetModal extends Component {
     return (
       <div className="fleet-modal-backdrop" >
         <div className="fleet-modal-content" ref={node => {this.node = node;}}>
-          <button 
-            className="fleet-modal-close"
-            onClick={this.handleClick}>
-            &times;
-          </button>
-          {/*this.props.urls.map((imgsrc, index) => 
-            <a className="slide-buttons" href={"#" + this.props.name + index}>{index+1}</a>
-          )*/}
           <div className="slider">
-            {this.props.urls.map((imgsrc, index) => 
-              <a className="slide-buttons" href={"#" + this.props.name + index} onClick={this.clicked}>{index+1}</a>
-            )}
             <div className="slides">
               {this.props.urls.map((imgsrc, index) => {
                 return (
                   <div className="slide" id={this.props.name + index} 
                   key={this.props.name + index}>
-                    <a className="slide-link" href={imgsrc} target="_blank">
+                    <a href={imgsrc} target="_blank">
                       <img src={imgsrc} alt={this.props.name + index}/></a></div>
                 );
               })}
             </div>
+            {this.props.urls.map((imgsrc, index) => 
+              <a className="slide-buttons" href={"#" + this.props.name + index} onClick={this.clicked}>{index+1}</a>
+            )}
           </div>
+          <button 
+            className="fleet-modal-close"
+            onClick={this.handleClick}>
+            &times;
+          </button>
         </div>
       </div>
     );
@@ -428,7 +448,9 @@ class Contact extends Component {
       pressed: false,
       sent: false,
       confirmed: false,
-      notified: false
+      notified: false,
+      cols: "50",
+      rows: "5"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -499,25 +521,44 @@ class Contact extends Component {
       <section className="contact">
         <div className="contact-parallax">
           <div className="parallax-opacity">
-            <div className="parallax-contact-area">
-              <h1 className="contact-title">CONTACT</h1>
-              <div className="contact-information-area">
-                <form className="contact-message-form" onSubmit={this.handleSubmit}>
-                  <label>
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Name"/><br/>
-                    <input type="text" name="organization"  value={this.state.organization} onChange={this.handleChange} placeholder="Organization (optional)"/><br/>
-                    <input type="text" name="email"  value={this.state.email} onChange={this.handleChange} placeholder="Email (optional)"/><br/>
-                    <input type="text" name="phone"  value={this.state.phone} onChange={this.handleChange} placeholder="Phone (optional)"/><br/>
-                    <input type="text" name="message"  value={this.state.message} onChange={this.handleChange} placeholder="Message..."/>
-                  </label>
-                  <input type="submit" value="Submit" disabled={this.state.pressed}/>
-                  {this.state.warn ? <Warning warningButton = {this.warningButton}/> : ''}
-                  {this.state.sent ? <SentPopup/> : ''}
-                  {this.state.confirmed ? <EmailConfirmation okButton = {this.okButton}/> : ''}
-                </form>
-              </div>
-            </div>
+            <h1 className="contact-title">CONTACT US</h1>
           </div>
+        </div>
+        <div className="contact-information-area">
+          <p>
+            Create a message to send to us using the fields below, or
+            use the contact information further below to send us a message 
+            later.<br/><br/>
+            <i>
+              Note: Sending a message using the fields below <b>will not </b> 
+              send the message using your email account. Instead it sends an
+              email to itself.
+            </i>
+          </p>
+          <form className="contact-message-form" onSubmit={this.handleSubmit}>
+            <label>
+              <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Name"/><br/>
+              <input type="text" name="organization"  value={this.state.organization} onChange={this.handleChange} placeholder="Organization (optional)"/><br/>
+              <input type="text" name="email"  value={this.state.email} onChange={this.handleChange} placeholder="Email (optional)"/><br/>
+              <input type="text" name="phone"  value={this.state.phone} onChange={this.handleChange} placeholder="Phone (optional)"/><br/>
+              <textarea cols={this.state.cols} rows={this.state.rows} spellcheck="true" className="message" name="message"  value={this.state.message} onChange={this.handleChange} placeholder="Message..."/>
+            </label>
+            <br/>
+            <input className="contact-submit-button" type="submit" value="Send Message" disabled={this.state.pressed}/>
+            {this.state.warn ? <Warning warningButton = {this.warningButton}/> : ''}
+            {this.state.sent ? <SentPopup/> : ''}
+            {this.state.confirmed ? <EmailConfirmation okButton = {this.okButton}/> : ''}
+          </form>
+          <section className="contact-info">
+            <h3>Contact Information</h3>
+            <p>
+            Owner: <i>(780) 524-8267</i> (Hugh Garbitt)<br/>
+            Email: <i>garbitt@telus.net</i><br/>
+            Office: <i>(780) 524-4754</i><br/>
+            Fax: <i>(780) 524-4753</i><br/>
+            Location: SW-21-70-23-W5<br/>
+            </p>
+          </section>
         </div>
       </section>
     );
