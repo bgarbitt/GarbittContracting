@@ -1379,8 +1379,8 @@ functions. Code structure is as follows:
     padding-top: 4px;
   }
   .contact-info {
-    background-color: grey;
-    width: 80%;
+    font-size: 24px;
+    width: 90%;
     position: relative;
     left: 50%;
     transform: translate(-50%);

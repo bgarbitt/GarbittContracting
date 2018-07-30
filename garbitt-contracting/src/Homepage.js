@@ -528,11 +528,11 @@ class Contact extends Component {
           <p>
             Create a message to send to us using the fields below, or
             use the contact information further below to send us a message 
-            later.<br/><br/>
+            another time.<br/><br/>
             <i>
               Note: Sending a message using the fields below <b>will not </b> 
               send the message using your email account. Instead it sends an
-              email to itself.
+              email to to our account using our account.
             </i>
           </p>
           <form className="contact-message-form" onSubmit={this.handleSubmit}>
