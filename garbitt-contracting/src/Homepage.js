@@ -30,22 +30,21 @@ class Navigation extends Component {
         </h1>
         <img src={logo} className="logo" alt="logo" />
         <nav className="navigation-normal">
-          <a href="#about">About Us</a><p>|</p>
-          <a href="#services">Services</a><p>|</p>
-          <a href="#safety">Safety</a><p>|</p>
-          <a href="#fleet">Fleet</a><p>|</p>
-          <a href="#contact">Contact Us</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#safety">Safety</a>
+          <a href="#fleet">Fleet</a>
+          <a href="#contact">Contact</a>
         </nav>
         <div className="navigation-dropdown">
           <button className="navigation-dropdown-button" onClick={this.handleClick}>Nav</button>
           {this.state.clicked ?
             <div className="navigation-dropdown-content">
-              <a href="#about">About Us</a>
+              <a href="#about">About</a>
               <a href="#services">Services</a>
               <a href="#safety">Safety</a>
               <a href="#fleet">Fleet</a>
-              <a href="#contact">Contact Us</a>
-              <a href="#quote">Request a Quote</a>
+              <a href="#contact">Contact</a>
             </div>
             : '' 
           }
@@ -98,7 +97,7 @@ class Services extends Component {
   }
   render () {
     return (
-      <section className="services">
+      <section className="services" id="services">
         <div className="services-parallax">
           <div className="parallax-opacity">
             <p className="services-pretty">SERVICES</p>
@@ -222,13 +221,15 @@ class Modal extends Component {
           <h2>{this.props.name}</h2>
           <p>{this.state.description[0]}</p>
           <h3>Video Example</h3>
-          <iframe 
-            width="420" 
-            height="315" 
-            src="https://www.youtube.com/embed/PoKFSIWZkyo" 
-            title={this.props.name + "Video"} allowFullScreen>
+          <div className="video-container">
+            <iframe 
+              width="420" 
+              height="236" 
+              src="https://www.youtube.com/embed/PoKFSIWZkyo" 
+              title={this.props.name + "Video"} allowFullScreen>
             </iframe>
-          <h3>Gallery</h3>
+          </div>
+          <h3>Image Gallery</h3>
           <ModalImages urls={this.state.imageUrls} {...this.state}/>
           
         </div>
@@ -316,7 +317,7 @@ class Fleet extends Component {
   }
   render () {
     return (
-      <section className="fleet">
+      <section className="fleet" id="fleet">
         <div className="fleet-parallax">
           <div className="parallax-opacity">
             <p className="fleet-pretty">FLEET</p>
@@ -518,7 +519,7 @@ class Contact extends Component {
   }
   render() {
     return (
-      <section className="contact">
+      <section className="contact" id="contact">
         <div className="contact-parallax">
           <div className="parallax-opacity">
             <h1 className="contact-title">CONTACT US</h1>
@@ -532,7 +533,7 @@ class Contact extends Component {
             <i>
               Note: Sending a message using the fields below <b>will not </b> 
               send the message using your email account. Instead it sends an
-              email to to our account using our account.
+              email to our own account using our own account.
             </i>
           </p>
           <form className="contact-message-form" onSubmit={this.handleSubmit}>
@@ -548,17 +549,23 @@ class Contact extends Component {
             {this.state.warn ? <Warning warningButton = {this.warningButton}/> : ''}
             {this.state.sent ? <SentPopup/> : ''}
             {this.state.confirmed ? <EmailConfirmation okButton = {this.okButton}/> : ''}
+            <br/>
+            <br/>
           </form>
           <section className="contact-info">
             <h3>Contact Information</h3>
             <p>
-            Owner: <i>(780) 524-8267</i> (Hugh Garbitt)<br/>
-            Email: <i>garbitt@telus.net</i><br/>
-            Office: <i>(780) 524-4754</i><br/>
-            Fax: <i>(780) 524-4753</i><br/>
-            Location: SW-21-70-23-W5<br/>
+              Owner: <i>(780) 524-8267</i> (Hugh Garbitt)<br/>
+              Email: <i>garbitt@telus.net</i><br/>
+              Office: <i>(780) 524-4754</i><br/>
+              Fax: <i>(780) 524-4753</i><br/>
+              Location: SW-21-70-23-W5<br/>
+              <span className="background-color-text">Location: </span>Valleyview, Ab<br/>
+              <span className="background-color-text">Location: </span>T0H 3N0<br/>
             </p>
           </section>
+          <br/>
+          <br/>
         </div>
       </section>
     );
