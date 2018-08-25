@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './gcl-logo.png';
+import none from './img/no-images.png';
 import './Homepage.css';
 
 class Navigation extends Component {
@@ -58,8 +59,8 @@ class About extends Component {
     return (
       <section className="about" id="about">
         <div className="about-parallax">
-          <div className="parallax-opacity">
-            <p className="parallax-pretty">ABOUT GARBITT CONTRACTING</p>
+          <div className="about-parallax-opacity">
+            <p className="about-parallax-pretty">ABOUT GARBITT CONTRACTING</p>
           </div>
         </div>
         <p className="about-statement">
@@ -86,11 +87,11 @@ class Services extends Component {
     super (props);
     this.state = {
       servicesList: [
-        "service title 1", "Mulching", "Oilfiled Labour Crews", "Tree Trimming", "Tree Removal",
+        "Mulching", "Oilfiled Labour Crews", "Tree Trimming", "Tree Removal",
         "Tree Transplanting", "Chainlink Fencing", "Snow Plowing (Snowcat)",
         "Skid Steers", "Labour Crews", "Pipeline Clearing", "Fenceline Clearing",
         "General Excavating", "Commercial / Residential Land Clearing",
-        "Disaster / Debris Clean-up", "Overgrowth Clean-Up", "Mulchsite Projects",
+        "Disaster / Debris Clean-up", "Overgrowth Clean-Up", "Mulch Site Projects",
         "Powerline Clearing"
       ]
     }
@@ -99,7 +100,7 @@ class Services extends Component {
     return (
       <section className="services" id="services">
         <div className="services-parallax">
-          <div className="parallax-opacity">
+          <div className="services-parallax-opacity">
             <p className="services-pretty">SERVICES</p>
           </div>
         </div>
@@ -113,13 +114,13 @@ class Services extends Component {
 class ServicesList extends Component {
   render () {
     return (
-      <section className="horizonatal-list-container">
+      <div className="horizonatal-list-container">
         <ul className="services-list">
           {this.props.servicesList.map((service, index) => {
             return <ModalButton name={service} key={index}/>
           })}
         </ul>
-      </section>
+      </div>
     );
   }
 }
@@ -157,7 +158,7 @@ This is where a database will be needed. In order to have individual
 modals pop up without manually creating an unknown amount, a database
 will be needed.
 Note: the iframe for the video needs a youtube url of the form:
-      https://www.youtube.com/embed/v6H2HmKDbZA
+      https://www.youtube.com/embed/05u0H1knxNE
 */
 class Modal extends Component {
   constructor(props) {
@@ -190,7 +191,7 @@ class Modal extends Component {
     }).then(data => {
       this.setState({
         //data = {"explanation":["s"],"image":["i","i"],"video":["v","v"]}
-        description: data.explanation,
+        description: data.explanation[0],
         videoUrls: data.video,
         imageUrls: data.image
       })
@@ -208,6 +209,8 @@ class Modal extends Component {
     document.removeEventListener('click', this.handleOutsideClick, false);
     this.props.onSpanClick();
   }
+  // What to do about an empty video: insert "about_blank" as a video url in the
+  // database.
   render () {
     return (
       <div className="service-modal-backdrop" >
@@ -219,17 +222,17 @@ class Modal extends Component {
             &times;
           </button>
           <h2>{this.props.name}</h2>
-          <p>{this.state.description[0]}</p>
-          <h3>Video Example</h3>
+          <p dangerouslySetInnerHTML={{__html: this.state.description}} />
+          <h3>Video Example (if available)</h3>
           <div className="video-container">
             <iframe 
               width="420" 
               height="236" 
-              src="https://www.youtube.com/embed/PoKFSIWZkyo" 
-              title={this.props.name + "Video"} allowFullScreen>
+              src={this.state.videoUrls[0]} 
+              title={this.props.name + " Video"} allowFullScreen>
             </iframe>
           </div>
-          <h3>Image Gallery</h3>
+          <h3>Image Gallery (if available)</h3>
           <ModalImages urls={this.state.imageUrls} {...this.state}/>
           
         </div>
@@ -253,17 +256,25 @@ class ModalImages extends Component {
   }
   render() {
     return(
-      <section className="horizontal-list-container">
+      <div className="horizontal-list-container">
         <ul className="service-modal-images">
             {this.props.urls.map((url, index) => {
-              return (
-                <li className="service-modal-images-crop" key={index}>
-                  <a href={url} target="_blank"><img src={url} alt={this.state.imageTitle + index}/></a>
-                </li>
-              );
+              if (url === "") {
+                return (
+                  <li className="service-modal-images-crop" key={index}>
+                    <img src={none} alt={"This image is unavailable"}/>
+                  </li>
+                );
+              } else {
+                return (
+                  <li className="service-modal-images-crop" key={index}>
+                    <a href={url} target="_blank"><img src={url} alt={this.state.imageTitle + " " + index}/></a>
+                  </li>
+                );
+              }
             })}
         </ul>
-      </section>
+      </div>
     );
   }
 }
@@ -292,12 +303,12 @@ class Fleet extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      url: "http://127.0.0.1:5000/",
+      //url: "http://127.0.0.1:5000/",
       fleet: {}
     }
   }
   componentDidMount () {
-    this.getFleet(this.state.url);
+    this.getFleet(this.props.url);
   }
   getFleet(url) {
     return fetch(url, {
@@ -315,6 +326,9 @@ class Fleet extends Component {
       })
     }).catch(error => console.error(error));
   }
+  test() {
+    console.log(this.props.url);
+  }
   render () {
     return (
       <section className="fleet" id="fleet">
@@ -331,7 +345,7 @@ class Fleet extends Component {
 class FleetImages extends Component {
   render () {
     return (
-      <section className="horizonatal-list-container">
+      <div className="horizonatal-list-container">
         <ul className="fleet-list">
           {Object.keys(this.props.fleetList).map((key, index) => 
             <FleetModalImageButton 
@@ -341,7 +355,7 @@ class FleetImages extends Component {
               />
           )}
         </ul>
-      </section>
+      </div>
     );
   }
 }
@@ -351,10 +365,16 @@ class FleetModalImageButton extends Component {
     this.state = {
       showModal: false
     };
-    this.backgroundImg = {
-      backgroundImage: "url(" + this.props.urls[0] + ")"
-    };
+    this.backgroundImg = this.backgroundImg.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+  backgroundImg () {
+    if (this.props.urls[0] === '') {
+      return {backgroundImage: 'url(${none})', backgroundSize: 'cover'};
+    } else {
+      return {backgroundImage: "url(" + this.props.urls[(Math.floor(Math.random() * this.props.urls.length))] + ")"}
+    }
+    
   }
   handleClick (e) {
     if (this.state.showModal === false) {
@@ -371,7 +391,7 @@ class FleetModalImageButton extends Component {
         <button 
           name="fleet-button"
           onClick={this.handleClick}
-          style={this.backgroundImg ? this.backgroundImg : ""}>
+          style={this.props.urls[0] === '' ? {} : {backgroundImage: "url(" + this.props.urls[(Math.floor(Math.random() * this.props.urls.length))] + ")"}}>
         </button>
         {this.state.showModal ? <FleetModal name={this.props.name} urls={this.props.urls} onSpanClick={this.handleClick}/> : null }
       </li>
@@ -415,7 +435,7 @@ class FleetModal extends Component {
                   <div className="slide" id={this.props.name + index} 
                   key={this.props.name + index}>
                     <a href={imgsrc} target="_blank">
-                      <img src={imgsrc} alt={this.props.name + index}/></a></div>
+                      <img src={imgsrc} alt={this.props.name + index} id={this.props.name + index}/></a></div>
                 );
               })}
             </div>
@@ -522,7 +542,7 @@ class Contact extends Component {
       <section className="contact" id="contact">
         <div className="contact-parallax">
           <div className="parallax-opacity">
-            <h1 className="contact-title">CONTACT US</h1>
+            <h1 className="contact-title">CONTACT</h1>
           </div>
         </div>
         <div className="contact-information-area">
@@ -552,7 +572,7 @@ class Contact extends Component {
             <br/>
             <br/>
           </form>
-          <section className="contact-info">
+          <div className="contact-info">
             <h3>Contact Information</h3>
             <p>
               Owner: <i>(780) 524-8267</i> (Hugh Garbitt)<br/>
@@ -560,10 +580,10 @@ class Contact extends Component {
               Office: <i>(780) 524-4754</i><br/>
               Fax: <i>(780) 524-4753</i><br/>
               Location: SW-21-70-23-W5<br/>
-              <span className="background-color-text">Location: </span>Valleyview, Ab<br/>
+              <span className="background-color-text">Location: </span>Valleyview, AB<br/>
               <span className="background-color-text">Location: </span>T0H 3N0<br/>
             </p>
-          </section>
+          </div>
           <br/>
           <br/>
         </div>
@@ -618,16 +638,32 @@ class SentPopup extends Component {
     );
   }
 }
-class Footer extends Component {
-  render() {
-    return (
-      <footer></footer>
-    );
-  }
-}
 class Homepage extends Component {
   constructor (props) {
     super (props);
+    this.state = {
+      url: "http://127.0.0.1:5000/"
+    };
+    this.url_selector = this.url_selector.bind(this);
+  }
+  UNSAFE_componentWillMount() {
+    this.url_selector();
+  }
+  url_selector() {
+    // image size: small = 1, medium = 2, large = 3
+    if (window.innerWidth < 768) {
+      this.setState ({
+        url: "http://127.0.0.1:5000/?size=1"
+      })
+    } else if (window.innerWidth < 1130) {
+      this.setState ({
+        url: "http://127.0.0.1:5000/?size=2"
+      })
+    } else {
+      this.setState ({
+        url: "http://127.0.0.1:5000/?size=3"
+      })
+    }
   }
   render() {
     return (
@@ -636,9 +672,8 @@ class Homepage extends Component {
         <About />
         <Services />
         <Safety />
-        <Fleet />
+        <Fleet url={this.state.url}/>
         <Contact />
-        <Footer />
       </div>
     );
   }

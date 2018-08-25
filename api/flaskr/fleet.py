@@ -12,12 +12,14 @@ def fleet():
         db = get_db()
         error = None
 
+        size = request.args.get('size')
+
         if db.execute(
-            "SELECT f.machine, fi.url FROM fleet f, fleet_images fi WHERE f.id = fi.id"
+            "SELECT f.machine, fi.url FROM fleet f, fleet_images fi WHERE f.id = fi.id and fi.size = ?", (size,)
         ).fetchone() is not None:
             
             cur = db.execute(
-                "SELECT f.machine, fi.url FROM fleet f, fleet_images fi WHERE f.id = fi.id"
+                "SELECT f.machine, fi.url FROM fleet f, fleet_images fi WHERE f.id = fi.id and fi.size = ?", (size,)
             ).fetchall()
             
             data = {}

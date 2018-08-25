@@ -130,8 +130,8 @@ functions. Code structure is as follows:
   .about-parallax {
     /*padding-top: 143px;*/
     /*opacity: 0.80;*/
-    /* Image to be used */
-    background-image: url("hexBack.jpg");
+    /* Image to be used url("hexBack.jpg")*/
+    background-image: url("img/office.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -179,7 +179,7 @@ functions. Code structure is as follows:
   /* #region services 600px mobile */
   .services-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/office.jpg");
 
     /* Set specific height */
     min-height: 200px;
@@ -368,7 +368,7 @@ functions. Code structure is as follows:
   /* #region safety 600px mobile */
   .safety-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/hexBack.jpg");
 
     /* Set specific height */
     min-height: 200px;
@@ -408,7 +408,7 @@ functions. Code structure is as follows:
   /* #region fleet 600px mobile */
   .fleet-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/fleet.jpg");
 
     /* Set specific height */
     min-height: 200px;
@@ -620,7 +620,7 @@ functions. Code structure is as follows:
   /* #region contact 600px mobile */
   .contact-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/contact.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -809,7 +809,6 @@ functions. Code structure is as follows:
     user-select: none;
   }
   /* #endregion contact 600px mobile */
-  
 }
 @media all and (min-width: 601px) {
   /* #region navigation 600px mobile */
@@ -918,7 +917,7 @@ functions. Code structure is as follows:
     /*padding-top: 143px;*/
     /*opacity: 0.80;*/
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/office.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -966,7 +965,7 @@ functions. Code structure is as follows:
   /* #region services 600px mobile */
   .services-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/office.jpg");
 
     /* Set specific height */
     min-height: 200px;
@@ -1158,7 +1157,7 @@ functions. Code structure is as follows:
   /* #region safety 600px mobile */
   .safety-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/hexBack.jpg");
 
     /* Set specific height */
     min-height: 200px;
@@ -1198,7 +1197,7 @@ functions. Code structure is as follows:
   /* #region fleet 600px mobile */
   .fleet-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/fleet.jpg");
 
     /* Set specific height */
     min-height: 200px;
@@ -1410,7 +1409,7 @@ functions. Code structure is as follows:
   /* #region contact 600px mobile */
   .contact-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
+    background-image: url("img/contact.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -1709,7 +1708,6 @@ functions. Code structure is as follows:
     /*padding-top: 143px;*/
     /*opacity: 0.80;*/
     /* Image to be used */
-    background-image: url("hexBack.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -1757,8 +1755,6 @@ functions. Code structure is as follows:
   /* #region services 768px mobile */
   .services-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
-
     /* Set specific height */
     min-height: 250px;
 
@@ -1978,7 +1974,6 @@ functions. Code structure is as follows:
   /* #region safety 768px mobile */
   .safety-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
 
     /* Set specific height */
     min-height: 250px;
@@ -2018,8 +2013,6 @@ functions. Code structure is as follows:
   /* #region fleet 768px mobile */
   .fleet-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
-
     /* Set specific height */
     min-height: 250px;
 
@@ -2261,8 +2254,6 @@ functions. Code structure is as follows:
   /* #endregion fleet 768px mobile */
   /* #region contact 600px mobile */
   .contact-parallax {
-    /* Image to be used */
-    background-image: url("hexBack.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -2579,8 +2570,6 @@ functions. Code structure is as follows:
   .about-parallax {
     /*padding-top: 143px;*/
     /*opacity: 0.80;*/
-    /* Image to be used */
-    background-image: url("hexBack.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -2628,7 +2617,6 @@ functions. Code structure is as follows:
   /* #region services 768px mobile */
   .services-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
 
     /* Set specific height */
     min-height: 250px;
@@ -2849,8 +2837,6 @@ functions. Code structure is as follows:
   /* #region safety 768px mobile */
   .safety-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
-
     /* Set specific height */
     min-height: 250px;
 
@@ -2889,7 +2875,6 @@ functions. Code structure is as follows:
   /* #region fleet 768px mobile */
   .fleet-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
 
     /* Set specific height */
     min-height: 250px;
@@ -3133,7 +3118,6 @@ functions. Code structure is as follows:
   /* #region contact 600px mobile */
   .contact-parallax {
     /* Image to be used */
-    background-image: url("hexBack.jpg");
     overflow: auto;
 
     /* Set specific height */
@@ -3327,29 +3311,13 @@ functions. Code structure is as follows:
 @media all and (min-width: 1130px) {
   /* #region navigation 1130px mobile */
   .navigation {
-    position: fixed;
-    top: 0;
-    height: 65px;
-    width: 100%;
-    padding-top: 9px;
     background-color: #f0f0f0;
-    z-index: 1;
-    border-bottom-style: solid;
-    border-width: 3px;
-    border-bottom-color: #353636;
-    -webkit-box-shadow: 0px   3px  10px   0px black;
-    -moz-box-shadow: 0px   3px  10px   0px black;
-    box-shadow: 0px   3px  10px   0px black;
-    text-shadow: 0px 0px 8px rgba(0,0,0,0.6);
   }
   .navigation h1 {
-    font-size: 3em;
-    width: 100%;
     margin: 0px 0px 0px 0px;
     padding-top: 4px;
     padding-left: 10px;
     text-align: left;
-    z-index: 10;
   }
   .navigation img {
     top: 5px;
@@ -3376,22 +3344,18 @@ functions. Code structure is as follows:
     border-color: #353636;
     border-radius: 20%/50%;
     background-color: #f0f0f0;
+    transition-duration: 0.3s;
   }
   .navigation-normal a:hover {
     color: white;
     background-color: rgba(0,0,0,0.9);
     border-radius: 20px;
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
     transition-duration: 0.3s;
     border-color: rgba(0,0,0,0.2);
-  }
-  .navigation-normal p {
-    display: inline-block;
-    padding: 0px 4px 0px 4px;
-    margin: 0px;
   }
   .navigation-dropdown{
     display: none;
@@ -3403,9 +3367,8 @@ functions. Code structure is as follows:
     padding-top: 77px;
   }
   .about-parallax {
-    background-image: url("hexBack.jpg");
     overflow: auto;
-    min-height: 300px;
+    min-height: 600px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -3413,23 +3376,18 @@ functions. Code structure is as follows:
     box-shadow: inset 0px  8px 10px 0px black,
                 inset 0px -8px 10px 0px black;
   }
-  .parallax-opacity {
-    height: 300px;
+  .about-parallax-opacity {
+    height: 600px;
     width: 100%;
     position: absolute;
     background-color: rgba(242,133,0,0.1);
-  }
-  .parallax-opacity:hover {
-    box-shadow: inset 0px  2px 20px 0px rgb(64,214,245),
-                inset 0px -2px 20px 0px rgb(64,214,245);
-    background-color: rgba(64,214,245,0.1);
     transition-duration: 0.3s;
   }
-  .parallax-pretty {
+  .about-parallax-pretty {
     font: 400 50px "Lato", sans-serif;
     padding: 15px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 250px;
     text-align: center;
     letter-spacing: 8px;
     background-color: rgba(0,0,0,0.7);
@@ -3437,12 +3395,14 @@ functions. Code structure is as follows:
     width: 88%;
     text-shadow: 1px 1px 1px 1px #353636;
     border-radius: 6px;
+    transition-duration: 0.3s;
   }
-  .parallax-pretty:hover {
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+  .about-parallax-opacity:hover > .about-parallax-pretty {
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.7),
+                0px 0px 10px 1px rgb(100, 116, 119);
     background-color: rgba(0,0,0,0.9);
     cursor: none;
     color: white;
@@ -3466,7 +3426,6 @@ functions. Code structure is as follows:
     background-color: #f0f0f0;
   }
   .services-parallax {
-    background-image: url("hexBack.jpg");
     min-height: 300px;
     background-attachment: fixed;
     background-position: center;
@@ -3474,6 +3433,13 @@ functions. Code structure is as follows:
     background-size: cover;
     box-shadow: inset 0px  8px 10px 0px black,
                 inset 0px -8px 10px 0px black;
+  }
+  .services-parallax-opacity {
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(242,133,0,0.1);
+    transition-duration: 0.3s;
   }
   .services-pretty {
     font: 400 50px "Lato", sans-serif;
@@ -3487,13 +3453,20 @@ functions. Code structure is as follows:
     width: 88%;
     text-shadow: 1px 1px 1px 1px #353636;
     border-radius: 6px;
+    transition-duration: 0.3s;
+  }
+  .services-parallax-opacity:hover > .services-pretty {
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.7),
+                0px 0px 10px 1px rgb(100, 116, 119);
+    background-color: rgba(0,0,0,0.9);
+    cursor: none;
+    color: white;
+    transition-duration: 0.3s;
   }
   .services-pretty:hover {
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
-    background-color: rgba(0,0,0,0.9);
     cursor: none;
     transition-duration: 0.3s;
   }
@@ -3557,13 +3530,14 @@ functions. Code structure is as follows:
     background-color: rgba(0,0,0,0.9);
     color: white;
     border-color: rgba(0,0,0,0.2);
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    -webkit-box-shadow: inset  0px  0px 10px 1px rgb(64,214,245);
-    -moz-box-shadow: inset  0px  0px 10px 1px rgb(64,214,245);
-    box-shadow: inset  0px  0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    -webkit-box-shadow: inset  0px  0px 10px 1px rgb(100, 116, 119);
+    -moz-box-shadow: inset  0px  0px 10px 1px rgb(100, 116, 119);
+    box-shadow: inset  0px  0px 10px 1px rgb(100, 116, 119);
+    transition-duration: 0.3s;
   }
   .service-modal-backdrop {
     position: fixed;
@@ -3592,7 +3566,7 @@ functions. Code structure is as follows:
     box-sizing: content-box;
     border-radius: 8px;
     border-width: 3px;
-    box-shadow: 0px 0px 40px 1px rgb(64,214,245);
+    box-shadow: 0px 0px 40px 1px rgb(100, 116, 119);
   }
   .service-modal-close {
     z-index: 1;
@@ -3617,10 +3591,10 @@ functions. Code structure is as follows:
     background-color: rgba(0,0,0,0.9);
     text-decoration: none;
     cursor: pointer;
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
   }
   .service-modal-content > h2 {
     margin: 0;
@@ -3691,7 +3665,6 @@ functions. Code structure is as follows:
   /* #endregion services 768px mobile */
   /* #region safety 1130px mobile */
   .safety-parallax {
-    background-image: url("hexBack.jpg");
     min-height: 300px;
     background-attachment: fixed;
     background-position: center;
@@ -3712,12 +3685,13 @@ functions. Code structure is as follows:
     width: 88%;
     text-shadow: 1px 1px 1px 1px #353636;
     border-radius: 6px;
+    transition-duration: 0.3s;
   }
   .safety-pretty:hover {
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
     background-color: rgba(0,0,0,0.9);
     cursor: none;
     color: white;
@@ -3736,7 +3710,6 @@ functions. Code structure is as follows:
   /* #endregion safety 768px mobile */
   /* #region fleet 1130px mobile */
   .fleet-parallax {
-    background-image: url("hexBack.jpg");
     min-height: 300px;
     background-attachment: fixed;
     background-position: center;
@@ -3757,12 +3730,13 @@ functions. Code structure is as follows:
     width: 88%;
     text-shadow: 1px 1px 1px 1px #353636;
     border-radius: 6px;
+    transition-duration: 0.3s;
   }
   .fleet-pretty:hover {
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
     background-color: rgba(0,0,0,0.9);
     cursor: none;
     color: white;
@@ -3781,22 +3755,26 @@ functions. Code structure is as follows:
     display: inline-block;
     font: 400 30px/1.8 "Lato", sans-serif;
     min-width: 0;
-    width: 346px;
+    width: 400px;
     height: 405px;
     margin: 10px;
     border-radius: 10px;
+    transition-duration: 0.3s;
   }
   .fleet-list > li:hover {
     background-color: rgba(0,0,0,0.9);
     color: white;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+  }
+  .fleet-list > li > button {
+    transition-duration: 0.3s;
   }
   .fleet-list > li:hover > button {
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
     transition-duration: 0.3s;
   }
   .fleet-list > li > p {
@@ -3805,24 +3783,28 @@ functions. Code structure is as follows:
     padding-bottom: 0px;
   }
   button[name="fleet-button"] {
-    background-color: #f0f0f0;
+    background-image: url("img/no-images.png");
+    background-color: rgba(0,0,0,0.9);
     border: none;
     color: #777;
     text-decoration: none;
     margin: 3px 0 0 0;
     padding: 8px;
-    width: 346px;
+    width: 400px;
     height: 348px;
     border-radius: 10px;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: space;
+    background-position: center;
     border-style: solid;
     border-color: #000;
     border-width: 2px;
   }
   button:hover[name="fleet-button"] {
     cursor: pointer;
+    transition-duration: 0.3s;
   }
   .fleet-modal-backdrop {
     position: fixed;
@@ -3855,7 +3837,7 @@ functions. Code structure is as follows:
     box-sizing: content-box;
     border-radius: 8px;
     border-width: 3px;
-    box-shadow: 0px 0px 40px 1px rgb(64,214,245);
+    box-shadow: 0px 0px 40px 1px rgb(100, 116, 119);
   }
   .fleet-modal-close {
     z-index: 1;
@@ -3873,6 +3855,7 @@ functions. Code structure is as follows:
     border-color: rgba(0,0,0,0.8);
     background-color: white;
     box-shadow: none;
+    transition-duration: 0.3s;
   }
   .fleet-modal-close:hover,
   .fleet-modal-close:focus {
@@ -3880,10 +3863,10 @@ functions. Code structure is as follows:
     background-color: rgba(0,0,0,0.9);
     text-decoration: none;
     cursor: pointer;
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
     transition-duration: 0.3s;
   }
   /*  slider code from: 
@@ -3896,7 +3879,7 @@ functions. Code structure is as follows:
     overflow-x: hidden;
   }
   .slides {
-    height: 90%;
+    height: 85%;
     display: flex;
     overflow-x: auto;
     border-radius: 5px;
@@ -3907,7 +3890,7 @@ functions. Code structure is as follows:
   }
   .slides::-webkit-scrollbar {
     width: 5px;
-    height: 5px;
+    height: 10px;
   }
   .slides::-webkit-scrollbar-thumb {
     background: #353636;
@@ -3951,10 +3934,10 @@ functions. Code structure is as follows:
     background-color: rgba(0,0,0,0.9);
     text-decoration: none;
     cursor: pointer;
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
   }
   .slider > a:active {
     top: 1px;
@@ -3966,7 +3949,7 @@ functions. Code structure is as follows:
   .slide > a > img {
     margin: 0;
     padding: 0;
-    max-height: calc(100vh - 24vh);
+    max-height: calc(100vh - 28vh);
     /*overflow: hidden;*/
     text-align: center;
     background-color: #777;
@@ -3982,7 +3965,6 @@ functions. Code structure is as follows:
   /* #endregion fleet 1130px mobile */
   /* #region contact 1130px mobile */
   .contact-parallax {
-    background-image: url("hexBack.jpg");
     min-height: 300px;
     background-attachment: fixed;
     background-position: center;
@@ -4003,12 +3985,13 @@ functions. Code structure is as follows:
     width: 88%;
     text-shadow: 1px 1px 1px 1px #353636;
     border-radius: 6px;
+    transition-duration: 0.3s;
   }
   .contact-title:hover {
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
     background-color: rgba(0,0,0,0.9);
     cursor: none;
     color: white;
@@ -4073,6 +4056,7 @@ functions. Code structure is as follows:
     box-shadow: inset -8px -14px 10px -10px rgba(0,0,0,0.7),
                 inset  10px  12px 10px -10px white,
                        2px   3px  5px rgba(0,0,0,0.7);
+    transition-duration: 0.3s;
   }
   .contact-submit-button:hover {
     transition-duration: 0.3s;
@@ -4080,11 +4064,11 @@ functions. Code structure is as follows:
     -moz-transition-duration: 0.3s;
     background-color: rgba(0,0,0,0.9);
     color: #f0f0f0;
-    text-shadow: 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245),
-                 0px 0px 10px rgb(64,214,245);
+    text-shadow: 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119),
+                 0px 0px 10px rgb(100, 116, 119);
     box-shadow: none;
-    box-shadow: inset 0px 0px 10px 1px rgb(64,214,245);
+    box-shadow: inset 0px 0px 10px 1px rgb(100, 116, 119);
   }
   .contact-submit-button:active {
     background-color: rgb(65, 65, 65);
@@ -4264,10 +4248,6 @@ functions. Code structure is as follows:
     padding-left: 90px;
     padding-right: 90px;
   }
-  .contact-information-area {
-    background: #648880;
-    background: linear-gradient(to right, #f6f1d3, #648880 85%, #293f50);
-  }
   .contact-information-area > p {
     width: auto;
     transform: translate(0);
@@ -4291,14 +4271,13 @@ functions. Code structure is as follows:
     padding-left: 140px;
     padding-right: 140px;
   }
+  .fleet {
+    background-color: #f0f0f0;
+  }
   .horizonatal-list-container {
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-  }
-  .contact-information-area {
-    background: #648880;
-    background: linear-gradient(to right, #f6f1d3, #648880 85%, #293f50);
   }
   .contact-information-area > p {
     padding-left: 140px;
@@ -4307,6 +4286,34 @@ functions. Code structure is as follows:
   .contact-message-form {
     transform: translate(40%);
   }
+  
+  /* #region experiment 1 
+  .about-statement {
+    color: #f0f0f0;
+    background-color: rgba(0,0,0,0.8);
+    width: 80%;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.8);
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .about-parallax {
+    box-shadow: none;
+  }
+  .services-parallax {
+    box-shadow: none;
+  }
+  .parallax-opacity {
+    background-color: none;
+    background-color: rgba(0,0,0,0);
+  }
+  .parallax-opacity:hover {
+    box-shadow: none;
+  }
+  /* #endregion */
+  /* #region experiment 2 */
+  /* #endregion */
 }
 
 

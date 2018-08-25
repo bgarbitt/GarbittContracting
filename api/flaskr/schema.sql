@@ -40,7 +40,8 @@ CREATE TABLE fleet (
 CREATE TABLE fleet_images (
     id INTEGER,
     url TEXT,
-    PRIMARY KEY (id, url),
+    size INTEGER,
+    PRIMARY KEY (id, url, size),
     CONSTRAINT fk_fleet
         FOREIGN KEY (id) 
         REFERENCES fleet (id)
