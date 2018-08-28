@@ -2021,7 +2021,6 @@ functions. Code structure is as follows:
     border-width: 3px;
     border-color: rgba(0,0,0,0.9);
     font: 400 26px/1.8 "Lato", sans-serif;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     box-shadow: inset 2px 2px 5px 1px rgba(0,0,0,0.5);
   }
   .message {
@@ -2029,7 +2028,6 @@ functions. Code structure is as follows:
     border-width: 3px;
     border-color: rgba(0,0,0,0.9);
     font: 400 26px/1.8 "Lato", sans-serif;
-    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     box-shadow: inset 2px 2px 5px 1px rgba(0,0,0,0.5);
   }
   .contact-submit-button {
@@ -2106,9 +2104,6 @@ functions. Code structure is as follows:
   .navigation-dropdown {
     right: 5%;
     top: 14px;
-  }
-  .navigation-dropdown-button {
-    text-shadow: 0px 0px 1px black;
   }
   .navigation-dropdown-content {
     right: -48px;
@@ -2232,6 +2227,7 @@ functions. Code structure is as follows:
     top: 28px;
     width: 418px;
     font-size: 22px;
+    text-shadow: none;
   }
   .navigation-normal a {
     text-decoration: none;
