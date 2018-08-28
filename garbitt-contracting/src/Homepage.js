@@ -64,18 +64,21 @@ class About extends Component {
           </div>
         </div>
         <p className="about-statement">
-          Garbitt Contracting is a 100% Aboriginal owned company. Hugh Garbitt, 
-          owner/operator started Garbitt Contracting Ltd. in July of 1998 having
-          previously worked mulching right of ways, removing hazard trees,
-          supervising crews, repairing & installing chain link fencing and operating
-          equipment. Through hands on ownership and personal accountability Hugh
-          Garbitt now maintains full time employment for several Sturgeon Lake
-          community members and has at your disposal various Mulchers, Bucket Trucks,
-          chippers, 2 ton flatdeck, 1 ton flat deck, trailer (20 feet to 50 feet),
-          Snow Cat, Skid Steer, Quads, Ski-doos and Side by Sides.<br/><br/>
-          His team of qualified and ticketed crews also have Enform safety
-          tickets and have various Oilfield experience. We are also ISN and
-          Comply Works certified.
+          Garbitt Contracting Ltd is a mulching company providing safe, organized, 
+          ergonomic, and environmentally friendly mulching services. Founded in 
+          1998 by Hugh Garbitt, a Certified Utility Tree Trimmer, our concern for 
+          the environment is put at the head of our business model. We believe our 
+          mulching services provide the fastest, safest, and most productive 
+          service in the industry.<br/><br/>
+          Mulching is cost efficient and reduces a company’s environmental 
+          footprint. Therefore, we provide environmentally responsible solutions 
+          for the oil & gas, forestry, agriculture, and construction industries. 
+          We are focused on completing the task safely, on time, and to the 
+          customer’s satisfaction.<br/><br/>
+          Our team of qualified and ticketed crews also have Enform safety tickets 
+          and have various Oilfield experience. We are also ISN, Comply Works and 
+          CQN Advantage  certified.
+
         </p>
       </section>
     );
@@ -290,8 +293,24 @@ class Safety extends Component {
           </div>
         </div>
         <p className="safety-statement">
-          Temporary safety message. Be sure to mention about comply works and
-          the other stuff.
+          Garbitt Contracting Ltd has developed a SECOR Safety Program. A SECOR 
+          (Small Employer Certificate of Recognition) shows that our Health and 
+          Safety Management System has been evaluated by a certified auditor and
+          meets provincial standards established by Alberta Occupational Health 
+          and Safety. More about secor can be found <a href="http://www.youracsa.ca/cor-secor/" target="_blank">here</a>.
+          <br/><br/>
+          Garbitt Contracting Ltd has included the contents of the Occupational 
+          Health and Safety Act and Regulations in our program. We ensure that 
+          our employees are up to date with all their safety and/or training 
+          courses as required. Our company’s program also involves safety 
+          training in our everyday work.
+          <br/><br/>
+          Every operator has all the necessary safety certifications: First Aid, 
+          H2S Alive, CSTS, Dangerous Goods Transportation, and WHMIS. All 
+          operators are also screened for substance abuse.
+          <br/><br/>
+          Garbitt Contracting Ltd is part of the ISN and ComplyWorks network and 
+          can be viewed upon request.
         </p>
       </section>
     );
