@@ -162,6 +162,8 @@ modals pop up without manually creating an unknown amount, a database
 will be needed.
 Note: the iframe for the video needs a youtube url of the form:
       https://www.youtube.com/embed/05u0H1knxNE
+      ec2-35-182-125-158.ca-central-1.compute.amazonaws.com
+      http://127.0.0.1:5000/
 */
 class Modal extends Component {
   constructor(props) {
@@ -337,6 +339,7 @@ class Fleet extends Component {
       },
       method: 'GET'
     }).then(response => {
+      console.log(response);
       return response.json();
     }).then(data => {
       this.setState({
